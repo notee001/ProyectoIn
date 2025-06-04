@@ -4,6 +4,7 @@
  */
 package paquete;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 /**
@@ -15,9 +16,16 @@ public class Sesion extends javax.swing.JFrame {
     /**
      * Creates new form Sesion
      */
-    public Sesion() {
+    private int documento;
+    public Sesion(int documento) {
         initComponents();
+        this.documento = documento;
         this.setLocationRelativeTo(null);
+        initSalas();
+    }
+
+    private Sesion() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -37,6 +45,7 @@ public class Sesion extends javax.swing.JFrame {
         TextSala1 = new javax.swing.JLabel();
         PanelReserva = new javax.swing.JPanel();
         TextReserva = new javax.swing.JLabel();
+        PanelCambios = new javax.swing.JPanel();
         FondoText = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
@@ -62,6 +71,9 @@ public class Sesion extends javax.swing.JFrame {
 
         PanelSala.setBackground(new java.awt.Color(153, 255, 255));
         PanelSala.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelSalaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 PanelSalaMouseEntered(evt);
             }
@@ -79,8 +91,8 @@ public class Sesion extends javax.swing.JFrame {
         PanelSalaLayout.setHorizontalGroup(
             PanelSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelSalaLayout.createSequentialGroup()
-                .addComponent(TextSala1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(TextSala1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
         PanelSalaLayout.setVerticalGroup(
             PanelSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,10 +101,14 @@ public class Sesion extends javax.swing.JFrame {
                 .addGap(0, 3, Short.MAX_VALUE))
         );
 
-        panelRound2.add(PanelSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 96, 260, -1));
+        panelRound2.add(PanelSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 96, 220, -1));
 
         PanelReserva.setBackground(new java.awt.Color(153, 255, 255));
+        PanelReserva.setPreferredSize(new java.awt.Dimension(220, 76));
         PanelReserva.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelReservaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 PanelReservaMouseEntered(evt);
             }
@@ -110,17 +126,30 @@ public class Sesion extends javax.swing.JFrame {
         PanelReservaLayout.setHorizontalGroup(
             PanelReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelReservaLayout.createSequentialGroup()
-                .addComponent(TextReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(TextReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
         PanelReservaLayout.setVerticalGroup(
             PanelReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(TextReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
         );
 
-        panelRound2.add(PanelReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 184, -1, 70));
+        panelRound2.add(PanelReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 184, 220, 70));
 
-        panelRound1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 430));
+        panelRound1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 430));
+
+        javax.swing.GroupLayout PanelCambiosLayout = new javax.swing.GroupLayout(PanelCambios);
+        PanelCambios.setLayout(PanelCambiosLayout);
+        PanelCambiosLayout.setHorizontalGroup(
+            PanelCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 490, Short.MAX_VALUE)
+        );
+        PanelCambiosLayout.setVerticalGroup(
+            PanelCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 430, Short.MAX_VALUE)
+        );
+
+        panelRound1.add(PanelCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 490, 430));
 
         FondoPanel.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 730, 430));
 
@@ -161,6 +190,14 @@ public class Sesion extends javax.swing.JFrame {
         PanelReserva.setBackground(new Color(153,255,255));
     }//GEN-LAST:event_PanelReservaMouseExited
 
+    private void PanelReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelReservaMouseClicked
+        initRese();
+    }//GEN-LAST:event_PanelReservaMouseClicked
+
+    private void PanelSalaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelSalaMouseClicked
+        initSalas();
+    }//GEN-LAST:event_PanelSalaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -195,10 +232,12 @@ public class Sesion extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel FondoPanel;
     private javax.swing.JLabel FondoText;
+    private javax.swing.JPanel PanelCambios;
     private javax.swing.JPanel PanelReserva;
     private javax.swing.JPanel PanelSala;
     private javax.swing.JLabel TextReserva;
@@ -207,4 +246,32 @@ public class Sesion extends javax.swing.JFrame {
     private Clases.PanelRound panelRound1;
     private Clases.PanelRound panelRound2;
     // End of variables declaration//GEN-END:variables
+
+    private void initSalas() {
+        SalasUsu Sal = new SalasUsu(documento);
+        Sal.setSize(750, 430);
+        Sal.setLocation(0,0);
+        
+        PanelCambios.removeAll();
+        PanelCambios.add(Sal, BorderLayout.CENTER);
+        PanelCambios.revalidate();
+        PanelCambios.repaint();
+        
+    }
+    
+    private void initRese() {
+        ReservasUsu Sal = new ReservasUsu(documento);
+        Sal.setSize(750, 430);
+        Sal.setLocation(0,0);
+        
+        PanelCambios.removeAll();
+        PanelCambios.add(Sal, BorderLayout.CENTER);
+        PanelCambios.revalidate();
+        PanelCambios.repaint();
+        
+    }
+
+    private void initSalas(int documento) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -39,6 +39,13 @@
                 <fileset dir="${build.classes.dir}"/>
             </obfuscate>
         </target>
+	<target name="-post-compile">
+    		<copy todir="${build.classes.dir}">
+        		<fileset dir="src">
+            			<include name="Img/**"/>
+        		</fileset>
+    		</copy>
+	</target>	
 
     For list of available properties check the imported 
     nbproject/build-impl.xml file. 

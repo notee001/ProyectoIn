@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import static Conexion.ConexionDB.obtenerConexion;
 import java.awt.Color;
+import java.awt.Image;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -16,6 +17,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.ImageIcon;
+import rsscalelabel.RSScaleLabel;
 
 
 /**
@@ -28,9 +31,18 @@ public class Main extends javax.swing.JFrame {
     int Xmouse, Ymouse;
     public Main() {
         initComponents();
-        //RSScaleLabel Libreria para escalar imagenes 
-        rsscalelabel.RSScaleLabel.setScaleLabel(FondoImg, "src/Img/Fondo.jpg");
-        rsscalelabel.RSScaleLabel.setScaleLabel(Perfil, "src/Img/Perfil.png");
+        
+        ImageIcon iconFondo = new ImageIcon(getClass().getResource("/Img/Fondo.jpg"));
+        Image imgFondo = iconFondo.getImage().getScaledInstance(FondoImg.getWidth(), FondoImg.getHeight(), Image.SCALE_SMOOTH);
+        // Escala
+        FondoImg.setIcon(new ImageIcon(imgFondo)); // Asigna la imagen escalada al JLabel
+
+        ImageIcon iconPerfil = new ImageIcon(getClass().getResource("/Img/Perfil.png"));
+        Image imgPerfil = iconPerfil.getImage().getScaledInstance(Perfil.getWidth(), Perfil.getHeight(), Image.SCALE_SMOOTH);
+        // Escala
+        Perfil.setIcon(new ImageIcon(imgPerfil)); // Asigna la imagen escalada al JLabel
+
+
         //El jframe aparece en el centro
         this.setLocationRelativeTo(null);
     }
@@ -304,11 +316,11 @@ public class Main extends javax.swing.JFrame {
         documento = Integer.parseInt(documentoStr);
         //hace la consulta a la base de datos
         String sql = "SELECT rol FROM usuarios WHERE documento = ? AND contrasena = ?";
-try (Connection conn = ConexionDB.obtenerConexion(); //si se genera un 1 se comprueba que el usuario existe
-     PreparedStatement pstmt = conn.prepareStatement(sql)) {
+    try (Connection conn = ConexionDB.obtenerConexion(); //si se genera un 1 se comprueba que el usuario existe
+        PreparedStatement pstmt = conn.prepareStatement(sql)) {
     
-    pstmt.setInt(1, documento);
-    pstmt.setString(2, contraseña);
+        pstmt.setInt(1, documento);
+        pstmt.setString(2, contraseña);
     
     try (ResultSet rs = pstmt.executeQuery()) {
         //comprueba el rol del usuario
@@ -318,7 +330,7 @@ try (Connection conn = ConexionDB.obtenerConexion(); //si se genera un 1 se comp
             if ("admin".equalsIgnoreCase(rol)) {
                 new SesionAdmins().setVisible(true);
             } else {
-                new Sesion().setVisible(true);
+                new Sesion(documento).setVisible(true);
             }
             this.dispose();
         } else {

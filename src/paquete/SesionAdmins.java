@@ -4,6 +4,7 @@
  */
 package paquete;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 /**
@@ -18,6 +19,7 @@ public class SesionAdmins extends javax.swing.JFrame {
     public SesionAdmins() {
         initComponents();
         this.setLocationRelativeTo(null);
+        initSalas();
     }
 
     /**
@@ -39,6 +41,7 @@ public class SesionAdmins extends javax.swing.JFrame {
         TextReserva = new javax.swing.JLabel();
         PanelSala = new javax.swing.JPanel();
         TextSala = new javax.swing.JLabel();
+        PanelCambios = new Clases.PanelRound();
         FondoText = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
@@ -46,6 +49,7 @@ public class SesionAdmins extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setModalExclusionType(null);
+        setResizable(false);
 
         FondoPanel.setPreferredSize(new java.awt.Dimension(770, 480));
         FondoPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -63,6 +67,9 @@ public class SesionAdmins extends javax.swing.JFrame {
 
         PanelUsuarios.setBackground(new java.awt.Color(153, 255, 255));
         PanelUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelUsuariosMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 PanelUsuariosMouseEntered(evt);
             }
@@ -79,19 +86,20 @@ public class SesionAdmins extends javax.swing.JFrame {
         PanelUsuarios.setLayout(PanelUsuariosLayout);
         PanelUsuariosLayout.setHorizontalGroup(
             PanelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelUsuariosLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(TextUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(TextUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
         );
         PanelUsuariosLayout.setVerticalGroup(
             PanelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(TextUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
-        panelRound2.add(PanelUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 260, 60));
+        panelRound2.add(PanelUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 220, 60));
 
         PanelReserva.setBackground(new java.awt.Color(153, 255, 255));
         PanelReserva.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelReservaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 PanelReservaMouseEntered(evt);
             }
@@ -108,17 +116,20 @@ public class SesionAdmins extends javax.swing.JFrame {
         PanelReserva.setLayout(PanelReservaLayout);
         PanelReservaLayout.setHorizontalGroup(
             PanelReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TextReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+            .addComponent(TextReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
         );
         PanelReservaLayout.setVerticalGroup(
             PanelReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(TextReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
-        panelRound2.add(PanelReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 164, 260, 60));
+        panelRound2.add(PanelReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 164, 220, 60));
 
         PanelSala.setBackground(new java.awt.Color(153, 255, 255));
         PanelSala.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelSalaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 PanelSalaMouseEntered(evt);
             }
@@ -136,8 +147,8 @@ public class SesionAdmins extends javax.swing.JFrame {
         PanelSalaLayout.setHorizontalGroup(
             PanelSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelSalaLayout.createSequentialGroup()
-                .addComponent(TextSala, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(TextSala, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
         PanelSalaLayout.setVerticalGroup(
             PanelSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,9 +157,25 @@ public class SesionAdmins extends javax.swing.JFrame {
                 .addGap(0, 3, Short.MAX_VALUE))
         );
 
-        panelRound2.add(PanelSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 96, 260, 60));
+        panelRound2.add(PanelSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 96, 220, 60));
 
-        panelRound1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 430));
+        panelRound1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 430));
+
+        PanelCambios.setRoundBottomRight(30);
+        PanelCambios.setRoundTopRight(30);
+
+        javax.swing.GroupLayout PanelCambiosLayout = new javax.swing.GroupLayout(PanelCambios);
+        PanelCambios.setLayout(PanelCambiosLayout);
+        PanelCambiosLayout.setHorizontalGroup(
+            PanelCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 490, Short.MAX_VALUE)
+        );
+        PanelCambiosLayout.setVerticalGroup(
+            PanelCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 430, Short.MAX_VALUE)
+        );
+
+        panelRound1.add(PanelCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 490, 430));
 
         FondoPanel.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 730, 430));
 
@@ -197,6 +224,18 @@ public class SesionAdmins extends javax.swing.JFrame {
         PanelSala.setBackground(new Color(153,255,255));
     }//GEN-LAST:event_PanelSalaMouseExited
 
+    private void PanelSalaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelSalaMouseClicked
+        initSalas();
+    }//GEN-LAST:event_PanelSalaMouseClicked
+
+    private void PanelUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelUsuariosMouseClicked
+        initNue();
+    }//GEN-LAST:event_PanelUsuariosMouseClicked
+
+    private void PanelReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelReservaMouseClicked
+        initReser();
+    }//GEN-LAST:event_PanelReservaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -236,6 +275,7 @@ public class SesionAdmins extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel FondoPanel;
     private javax.swing.JLabel FondoText;
+    private Clases.PanelRound PanelCambios;
     private javax.swing.JPanel PanelReserva;
     private javax.swing.JPanel PanelSala;
     private javax.swing.JPanel PanelUsuarios;
@@ -246,4 +286,40 @@ public class SesionAdmins extends javax.swing.JFrame {
     private Clases.PanelRound panelRound1;
     private Clases.PanelRound panelRound2;
     // End of variables declaration//GEN-END:variables
+
+    private void initSalas() {
+        Salas Sal = new Salas();
+        Sal.setSize(750, 430);
+        Sal.setLocation(0,0);
+        
+        PanelCambios.removeAll();
+        PanelCambios.add(Sal, BorderLayout.CENTER);
+        PanelCambios.revalidate();
+        PanelCambios.repaint();
+        
+    }
+    
+    private void initNue() {
+        NuevoAdmin Sal = new NuevoAdmin();
+        Sal.setSize(750, 430);
+        Sal.setLocation(0,0);
+        
+        PanelCambios.removeAll();
+        PanelCambios.add(Sal, BorderLayout.CENTER);
+        PanelCambios.revalidate();
+        PanelCambios.repaint();
+        
+    }
+    
+    private void initReser() {
+        ReservasAdmin Sal = new ReservasAdmin();
+        Sal.setSize(750, 430);
+        Sal.setLocation(0,0);
+        
+        PanelCambios.removeAll();
+        PanelCambios.add(Sal, BorderLayout.CENTER);
+        PanelCambios.revalidate();
+        PanelCambios.repaint();
+        
+    }
 }
